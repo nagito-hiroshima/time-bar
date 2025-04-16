@@ -166,6 +166,13 @@ audio.loop = true;
 //音がでる確認ポップアップ表示
 if (confirm('音が出ます。音量に注意してください。')){
   // ユーザーが音を許可した場合の処理
+  audio.play(); // 音を再生
+  //1秒後に音を止める
+  setTimeout(() => {
+    audio.pause();
+    audio.currentTime = 0; // 音を最初に戻す
+  }, 1000);
+
 } else {
   // ユーザーが音を拒否した場合の処理
   alert('音は出ません。');
@@ -244,10 +251,14 @@ setInterval(() => {
       return response.json();
     })
     .then(data => {
-      const serverTime = parseInt(data.data.time, 10);
-      // 新しい終了時刻を設定（現在時刻＋APIで取得した秒数）
-      endTimestamp = Date.now() + serverTime * 1000;
-      console.log(`Synced with server. Remaining: ${serverTime}秒`);
+      const serverTime = parseInt(data.data.time, 10); // APIから取得した残り秒数
+      const now = Date.now();
+      const currentRemaining = Math.floor((endTimestamp - now) / 1000); // 現在の残り秒数
+      const diff = Math.abs(currentRemaining - serverTime);
+
+    
+        endTimestamp = now + serverTime * 1000;
+        console.log(`サーバー時間と同期: ${serverTime} 秒（前: ${currentRemaining} 秒）`);
     })
     .catch(error => {
       console.error('API取得エラー:', error);
