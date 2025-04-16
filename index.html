@@ -171,6 +171,27 @@ if (confirm('音が出ます。音量に注意してください。')){
   alert('音は出ません。');
 } 
 
+//フルスクリーンボタンの処理
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+fullscreenBtn.addEventListener('click', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+    fullscreenBtn.textContent = '全画面にする';
+  } else {
+    document.documentElement.requestFullscreen();
+    fullscreenBtn.textContent = '全画面を終了';
+  }
+});
+
+// フルスクリーン状態の変更を監視
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement) {
+    fullscreenBtn.textContent = '全画面を終了';
+  } else {
+    fullscreenBtn.textContent = '全画面にする';
+  }
+});
+
 // サーバー時間に基づく終了予定時刻
 let endTimestamp = Date.now() + 30 * 60 * 1000; // 初期値：30分後
 
