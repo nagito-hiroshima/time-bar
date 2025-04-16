@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>カウントダウンタイマー</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7xj1z5l5e5e5e5e5e5e5e5e5e5e5e5e5" crossorigin="anonymous" />
   <style>
     html,
     body {
@@ -164,6 +166,7 @@ const audio = new Audio('./se1.mp3');
 audio.loop = true;
 
 //音がでる確認ポップアップ表示
+/*
 if (confirm('音が出ます。音量に注意してください。')){
   // ユーザーが音を許可した場合の処理
   audio.play(); // 音を再生
@@ -176,7 +179,31 @@ if (confirm('音が出ます。音量に注意してください。')){
 } else {
   // ユーザーが音を拒否した場合の処理
   alert('音は出ません。');
-} 
+} */
+
+//音が出る確認ポップアップ表示SweetAlert2
+
+Swal.fire({
+  title: '音が出ます。音量に注意してください。',
+  text: '音を許可しますか？',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'はい',
+  cancelButtonText: 'いいえ'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // ユーザーが音を許可した場合の処理
+    audio.play(); // 音を再生
+    //1秒後に音を止める
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0; // 音を最初に戻す
+    }, 1000);
+  } else {
+    // ユーザーが音を拒否した場合の処理
+    alert('音は出ません。');
+  }
+});
 
 //フルスクリーンボタンの処理
 const fullscreenBtn = document.getElementById('fullscreen-btn');
