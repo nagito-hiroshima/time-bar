@@ -163,6 +163,14 @@ const countdownDisplay = document.querySelector('.remaining_time');
 const audio = new Audio('./se1.mp3');
 audio.loop = true;
 
+//音がでる確認ポップアップ表示
+if (confirm('音が出ます。音量に注意してください。')){
+  // ユーザーが音を許可した場合の処理
+} else {
+  // ユーザーが音を拒否した場合の処理
+  alert('音は出ません。');
+} 
+
 // サーバー時間に基づく終了予定時刻
 let endTimestamp = Date.now() + 30 * 60 * 1000; // 初期値：30分後
 
@@ -178,6 +186,9 @@ function updateCountdown() {
   } else {
     countdownDisplay.textContent = 'チャージしてね！';
     clearInterval(countdownInterval);
+    //背景色を元に戻す
+    document.querySelector('.display').style.background =
+      'linear-gradient(to bottom right, #0099ff, #66ccff)';
   }
 
   // 色や音の処理
