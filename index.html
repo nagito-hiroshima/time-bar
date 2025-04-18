@@ -139,15 +139,15 @@
       <div class="price-box-container">
         <div class="price-box">
           <span>110円</span>
-          <small>30分</small>
-        </div>
-        <div class="price-box">
-          <span>220円</span>
           <small>60分</small>
         </div>
         <div class="price-box">
-          <span>440円</span>
+          <span>220円</span>
           <small>120分</small>
+        </div>
+        <div class="price-box">
+          <span>440円</span>
+          <small>180分</small>
         </div>
       </div>
 
@@ -231,6 +231,7 @@ let endTimestamp = Date.now() + 30 * 60 * 1000; // 初期値：30分後
 
 // 表示を更新する関数
 function updateCountdown() {
+console.log('updateCountdown called');
   const now = Date.now();
   const remaining = Math.floor((endTimestamp - now) / 1000);
 
@@ -240,7 +241,7 @@ function updateCountdown() {
     countdownDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   } else {
     countdownDisplay.textContent = 'チャージしてね！';
-    clearInterval(countdownInterval);
+    //clearInterval(countdownInterval);
     //背景色を元に戻す
     document.querySelector('.display').style.background =
       'linear-gradient(to bottom right, #0099ff, #66ccff)';
