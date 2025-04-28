@@ -123,6 +123,20 @@
     #fullscreen-btn.hidden {
       display: none;
     }
+
+    /*右下に透明なボタン #bgmbutton*/
+    #bgmbutton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+    }
   </style>
 </head>
 
@@ -159,11 +173,14 @@
     </div>
   </div>
   <button id="fullscreen-btn">全画面にする</button>
+  <div id="bgmbutton" onclick="playAudio()"></div>
 
   <script>
 const countdownDisplay = document.querySelector('.remaining_time');
 const audio = new Audio('./se1.mp3');
+const audio2 = new Audio('./se2.mp3');
 audio.loop = true;
+audio2.loop = true;
 
 //音がでる確認ポップアップ表示
 /*
@@ -292,7 +309,31 @@ setInterval(() => {
       console.error('API取得エラー:', error);
       alert('データの取得に失敗しました。ページをリロードしてください。');
     });
+  
+    //21:50~22:00の間にse2を流す（閉店BGM）
+    //再生していなければ再生する
+    const currentTime = new Date().getHours() * 60 + new Date().getMinutes();
+
+    if (currentTime >= 20 * 60 + 50 && currentTime <= 21 * 60) {
+      if (audio2.paused) {
+        audio2.play();
+        audio2.volume = 0.3; // 音量を50%に設定
+      }
+    } else {
+      audio2.pause();
+      audio2.currentTime = 0;
+    }
 }, 10000);
+
+function playAudio() {
+  if (audio2.paused) {
+    audio2.play(); // 修正: audio2を再生
+    audio2.volume = 0.3; // 音量を50%に設定
+  } else {
+    audio2.pause(); // 修正: audio2を一時停止
+    audio2.currentTime = 0;
+  }
+}
 
   </script>
 </body>
