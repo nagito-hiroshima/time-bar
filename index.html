@@ -143,7 +143,7 @@
 <body>
   <div class="machine-ui">
     <div class="card-slot">
-      <span>[大学祭実行委員会]</span>
+      <span>[大学祭実行委員会] v2.2</span>
     </div>
     <div class="display">
       <div class="logo">
@@ -311,7 +311,18 @@ setInterval(() => {
     })
     .catch(error => {
       console.error('API取得エラー:', error);
-      alert('データの取得に失敗しました。ページをリロードしてください。');
+      Swal.fire({
+        icon: 'error',
+        title: 'エラー',
+        text: 'データの取得に失敗しました。ページをリロードしてください。',
+        //3秒後に自動で閉じる
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        willClose: () => {
+          Swal.fire.close();
+        }      });
+      //alert('データの取得に失敗しました。ページをリロードしてください。');
     });
   
     //21:50~22:00の間にse2を流す（閉店BGM）
