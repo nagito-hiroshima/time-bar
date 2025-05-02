@@ -1,0 +1,129 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e0e0e0;
+  font-size: 2vw;
+  /* 全体のベースフォントサイズ */
+}
+
+.machine-ui {
+  width: 100vw;
+  height: 100vh;
+  background: #f2f2f2;
+  border: none;
+  border-radius: 0;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-slot {
+  background: #000;
+  color: #fff;
+  padding: 2vh;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5vh;
+}
+
+.display {
+  flex: 1;
+  background: linear-gradient(to bottom right, #0099ff, #66ccff);
+  color: #fff;
+  padding: 5vh 2vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo span:first-child {
+  display: block;
+  font-size: 4vh;
+  margin-top: 1vh;
+}
+
+.logo span:last-child {
+  display: block;
+  font-size: 3vh;
+  margin-bottom: 4vh;
+}
+
+.price-box-container {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  flex-wrap: wrap;
+  margin-bottom: 3vh;
+}
+
+.price-box {
+  background: #ffff33;
+  color: #333;
+  padding: 1vh 2vw;
+  border-radius: 12px;
+  font-size: 6vh;
+  font-weight: bold;
+  text-align: center;
+  min-width: 15vw;
+}
+
+.price-box small {
+  display: block;
+  font-size: 2vh;
+  font-weight: normal;
+}
+
+.countdown {
+  margin-top: 3vh;
+}
+
+.countdown span {
+  font-size: 10vh;
+  /* 大きな時間表示 */
+  color: #fff;
+  font-weight: bold;
+}
+
+#fullscreen-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 1vh 2vw;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 2vh;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#fullscreen-btn.hidden {
+  display: none;
+}
+
+/*右下に透明なボタン #bgmbutton*/
+#bgmbutton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+}
